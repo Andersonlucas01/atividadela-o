@@ -1,0 +1,34 @@
+// Função para ler um número do usuário
+function lerNumero() {
+  const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  return new Promise((resolve) => {
+    readline.question('Digite o número: ', (numero) => {
+      readline.close();
+      resolve(numero);
+    });
+  });
+}
+
+// Função principal
+async function main() {
+  const populacaoA = await lerNumero();
+  const taxaA = await lerNumero();
+  const populacaoB = await lerNumero();
+  const taxaB = await lerNumero();
+
+  const anos = calcularAnos(populacaoA, taxaA, populacaoB, taxaB);
+
+  console.log(`Anos necessários para a população A ultrapassar a população B: ${anos}`);
+
+  // Permitir repetir a operação
+  const resposta = await lerTexto('Deseja repetir a operação? (s/n) ');
+  if (resposta === 's') {
+    main();
+  }
+}
+
+main();
