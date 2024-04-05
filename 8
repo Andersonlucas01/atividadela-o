@@ -1,0 +1,30 @@
+// Função para ler um número do usuário
+function lerNumero() {
+  const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  return new Promise((resolve) => {
+    readline.question('Digite o número: ', (numero) => {
+      readline.close();
+      resolve(numero);
+    });
+  });
+}
+
+// Função principal
+async function main() {
+  let soma = 0;
+  for (let i = 1; i <= 5; i++) {
+    const numero = await lerNumero();
+    soma += numero;
+  }
+
+  const media = soma / 5;
+
+  console.log(`Soma: ${soma}`);
+  console.log(`Média: ${media}`);
+}
+
+main();
