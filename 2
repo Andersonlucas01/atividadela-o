@@ -1,0 +1,31 @@
+// Função para ler um texto do usuário
+function lerTexto() {
+  const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  return new Promise((resolve) => {
+    readline.question('Digite o texto: ', (texto) => {
+      readline.close();
+      resolve(texto);
+    });
+  });
+}
+
+// Função principal
+async function main() {
+  let nome = await lerTexto();
+  let senha = await lerTexto();
+
+  // Validação da senha
+  while (senha === nome) {
+    console.log('Senha inválida! A senha não pode ser igual ao nome.');
+    senha = await lerTexto();
+  }
+
+  console.log(`Nome: ${nome}`);
+  console.log(`Senha: ${senha}`);
+}
+
+main();
