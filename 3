@@ -1,0 +1,73 @@
+// Função para ler um número do usuário
+function lerNumero() {
+  const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  return new Promise((resolve) => {
+    readline.question('Digite o número: ', (numero) => {
+      readline.close();
+      resolve(numero);
+    });
+  });
+}
+
+// Função para ler um texto do usuário
+function lerTexto() {
+  const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  return new Promise((resolve) => {
+    readline.question('Digite o texto: ', (texto) => {
+      readline.close();
+      resolve(texto);
+    });
+  });
+}
+
+// Função principal
+async function main() {
+  const nome = await lerTexto();
+  const idade = await lerNumero();
+  const salario = await lerNumero();
+  const sexo = await lerTexto();
+  const estadoCivil = await lerTexto();
+
+  // Validação do nome
+  if (nome.length <= 3) {
+    console.log('Nome inválido! O nome deve ter mais de 3 caracteres.');
+    return;
+  }
+
+  // Validação da idade
+  if (idade < 0 || idade > 150) {
+    console.log('Idade inválida! A idade deve estar entre 0 e 150.');
+    return;
+  }
+
+  // Validação do salário
+  if (salario <= 0) {
+    console.log('Salário inválido! O salário deve ser maior que zero.');
+    return;
+  }
+
+  // Validação do sexo
+  if (sexo !== 'f' && sexo !== 'm') {
+    console.log('Sexo inválido! O sexo deve ser "f" ou "m".');
+    return;
+  }
+
+  // Validação do estado civil
+  if (estadoCivil !== 's' && estadoCivil !== 'c' && estadoCivil !== 'v' && estadoCivil !== 'd') {
+    console.log('Estado civil inválido! O estado civil deve ser "s", "c", "v" ou "d".');
+    return;
+  }
+
+  console.log(`Nome: ${nome}`);
+  console.log(`Idade: ${idade}`);
+  console.log(`Salário: ${salario}`);
+  console.log(`Sexo: ${sexo}`);
+  console.log(`Estado civil: ${
