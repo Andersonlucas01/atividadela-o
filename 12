@@ -1,0 +1,26 @@
+// Função para ler um número do usuário
+function lerNumero() {
+  const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  return new Promise((resolve) => {
+    readline.question('Digite o número: ', (numero) => {
+      readline.close();
+      resolve(numero);
+    });
+  });
+}
+
+// Função principal
+async function main() {
+  const numero = await lerNumero();
+
+  console.log(`Tabuada de ${numero}:`);
+  for (let i = 1; i <= 10; i++) {
+    console.log(`${numero} X ${i} = ${numero * i}`);
+  }
+}
+
+main();
