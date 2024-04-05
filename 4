@@ -1,0 +1,23 @@
+function calcularAnos(populacaoA, taxaA, populacaoB, taxaB) {
+  let anos = 0;
+  while (populacaoA < populacaoB) {
+    populacaoA += populacaoA * taxaA;
+    populacaoB += populacaoB * taxaB;
+    anos++;
+  }
+  return anos;
+}
+
+// Função principal
+function main() {
+  const populacaoA = 80000;
+  const taxaA = 0.03;
+  const populacaoB = 200000;
+  const taxaB = 0.015;
+
+  const anos = calcularAnos(populacaoA, taxaA, populacaoB, taxaB);
+
+  console.log(`Anos necessários para a população A ultrapassar a população B: ${anos}`);
+}
+
+main();
